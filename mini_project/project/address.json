@@ -1,0 +1,69 @@
+{
+  "places": [
+    {
+      "name": "UFR STGI",
+      "address": {
+        "street": "4 Place Tharradin",
+        "postal_code": "25200",
+        "city": "Montbéliard",
+        "country": "France"
+      }
+    },
+    {
+      "name": "Université de Belfort Louis NEEL",
+      "address": {
+        "street": "2 rue Chantereine",
+        "postal_code": "90000",
+        "city": "Belfort",
+        "country": "France"
+      }
+    },
+    {
+      "name": "Pub O'Brian",
+      "address": {
+        "street": "13 Place du Général de Gaulle",
+        "postal_code": "25200",
+        "city": "Montbéliard",
+        "country": "France"
+      }
+    },
+    {
+      "name": "Le Moulin Rouge",
+      "address": {
+        "street": "1 rue de la Croisée",
+        "postal_code": "25400",
+        "city": "Taillecourt",
+        "country": "France"
+      }
+    }
+  ],
+  "people": [
+    {
+      "name": "Kyllian Cuevas",
+      "address": {
+        "street": "1 rue Charles Goguel",
+        "postal_code": "25200",
+        "city": "Montbéliard",
+        "country": "France"
+      }
+    },
+    {
+      "name": "Pierre Meyer",
+      "address": {
+        "street": "10 Rue des Grands Champs",
+        "postal_code": "90300",
+        "city": "Vétrigne",
+        "country": "France"
+      }
+    },
+    {
+      "name": "Thomas Mirbey",
+      "address": {
+        "street": "10 Rue des Vosges",
+        "postal_code": "25420",
+        "city": "Voujeaucourt",
+        "country": "France"
+      }
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+import osmium
+import pandas as pd
+from tqdm import tqdm
+import os
+import networkx as nx
+from shapely.geometry import Point
+import heapq
+import folium
+import math
+
+# --- Configuration ---
+start_points_coords = [
+    (47.639674, 6.863844),  # Belfort
+    (47.678125, 6.848332),  # Valdoie
+    (47.510266, 7.001676)   # Delle
+]
+
+potential_end_points_coords = [
+    (47.511364, 6.804863),  # Montbéliard
+    (47.584155, 6.890579),  # Trévenans
+    (47.521808, 6.957887)   # Bourogne
+]
+
+input_file = "franche-comte-250929.osm.pbf"
+parquet_file = "highways.parquet"
+
+# --- Haversine Distance Function (for accurate weighting) ---
+def haversine_distance(coord1, coord2):
+    """Calculates distance between two lat/lon coordinates in kilometers."""
+    R = 6371  # Earth radius in kilometers
+    lat1, lon1 = math.radians(coord1[0]), math.radians(coord1[1])
+    lat2, lon2 = math.radians(coord2[0]), math.radians(coord2[1])
+
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+
+    a = math.sin(dlat / 2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2)**2
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    distance = R * c
+    return distance
+
+# --- Step 1: Parse OSM data (if necessary) ---
+if not os.path.exists(parquet_file):
+    print(f"'{parquet_file}' not found. Parsing OSM file...")
+    file_size = os.path.getsize(input_file)
+    
+    class HighwayHandler(osmium.SimpleHandler):
+        def __init__(self, total_size):
+            super().__init__()
+            self.nodes_data = []
+            self.pbar = tqdm(total=total_size, unit='B', unit_scale=True, desc="Parsing OSM")
+
+        def way(self, w):
+            if 'highway' in w.tags:
+                # Ensure coordinates are stored as tuples from the start
+                coords = [tuple((n.lat, n.lon)) for n in w.nodes if n.location.valid()]
+                if len(coords) >= 2:
+                    self.nodes_data.append({'id': w.id, 'highway': w.tags['highway'], 'nodes': coords})
+            self.pbar.update(w.meta.offset - self.pbar.n)
+
+        def close(self):
+            self.pbar.n = self.pbar.total
+            self.pbar.close()
+
+    handler = HighwayHandler(file_size)
+    handler.apply_file(input_file, locations=True)
+    handler.close()
+    
+    df = pd.DataFrame(handler.nodes_data)
+    df.to_parquet(parquet_file, engine='pyarrow', index=False)
+else:
+    print(f"Found '{parquet_file}'. Loading pre-parsed data.")
+    df = pd.read_parquet(parquet_file)
+
+# --- Step 2: Build the Road Network Graph ---
+G = nx.Graph()
+print("Building road network graph...")
+for _, row in tqdm(df.iterrows(), total=len(df), desc="Building Graph"):
+    nodes = row['nodes']
+    for i in range(len(nodes) - 1):
+        # 💡 THE FIX IS HERE: Convert numpy array from pandas back to a tuple
+        start = tuple(nodes[i])
+        end = tuple(nodes[i+1])
+        dist = haversine_distance(start, end)
+        G.add_edge(start, end, weight=dist)
+
+# --- Helper functions ---
+def nearest_node_by_road(G, point, k=5):
+    """
+    Finds the nearest node by actual road distance instead of pure haversine.
+    First checks k closest nodes by straight line, then picks the one with shortest path.
+    """
+    # Step 1: Get k closest by straight-line
+    candidates = sorted(G.nodes, key=lambda n: haversine_distance(n, point))[:k]
+    
+    # Step 2: Compute shortest path distance
+    best_node = None
+    best_dist = float("inf")
+    for node in candidates:
+        try:
+            dist = nx.dijkstra_path_length(G, node, node, weight='weight')  # distance to itself is 0
+            snap_dist = haversine_distance(point, node)  # snap cost to node
+            total_dist = dist + snap_dist
+            if total_dist < best_dist:
+                best_node = node
+                best_dist = total_dist
+        except nx.NetworkXNoPath:
+            continue
+    
+    return best_node
+
+def dijkstra_path(G, source, target):
+    """Wrapper for networkx's Dijkstra for simplicity."""
+    return nx.dijkstra_path(G, source, target, weight='weight')
+
+# --- Step 3: Find the "Most Centered" Destination ---
+print("Calculating the most centered destination...")
+end_point_scores = {}
+
+start_nodes = [nearest_node_by_road(G, pt) for pt in start_points_coords]
+
+with tqdm(total=len(potential_end_points_coords) * len(start_nodes), desc="Evaluating Destinations") as pbar:
+    for end_point in potential_end_points_coords:
+        total_distance = 0
+        end_node = nearest_node_by_road(G, end_point)
+        
+        for start_node in start_nodes:
+            try:
+                path_length = nx.dijkstra_path_length(G, start_node, end_node, weight='weight')
+                total_distance += path_length
+            except nx.NetworkXNoPath:
+                total_distance += float('inf')
+            pbar.update(1)
+            
+        end_point_scores[end_point] = total_distance
+
+best_end_point = min(end_point_scores, key=end_point_scores.get)
+print(f"The most centered destination is: {best_end_point} with a total travel score of {end_point_scores[best_end_point]:.2f} km")
+
+# --- Step 4: Generate the Map ---
+print("Generating interactive map...")
+m = folium.Map(location=best_end_point, zoom_start=10)
+
+for i, pt in enumerate(start_points_coords):
+    folium.Marker(pt, popup=f"Start Point {i+1}", icon=folium.Icon(color="green")).add_to(m)
+
+folium.Marker(best_end_point, popup="Centered Destination", icon=folium.Icon(color="red", icon="star")).add_to(m)
+
+for pt in potential_end_points_coords:
+    if pt != best_end_point:
+        folium.Marker(pt, popup="Potential Destination", icon=folium.Icon(color="gray", icon="question-sign")).add_to(m)
+
+best_end_node = nearest_node_by_road(G, best_end_point)
+colors = ["blue", "purple", "orange", "darkblue", "cadetblue"]
+for i, start_node in enumerate(start_nodes):
+    path = dijkstra_path(G, start_node, best_end_node)
+    color = colors[i % len(colors)]
+    folium.PolyLine(path, color=color, weight=4, opacity=0.8, tooltip=f"Route from Start {i+1}").add_to(m)
+
+output_file = "franche_comte_route.html"
+m.save(output_file)
+print(f"Interactive map generated: {output_file}")

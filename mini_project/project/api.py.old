@@ -1,0 +1,125 @@
+#!/usr/bin/python3
+'''
+Created on 30-09-2025
+
+@author: TM
+@version: 1
+
+Python REST API using FLASK for Multimodal Car Pooling Project
+'''
+
+#------------------
+# Import
+#------------------
+
+from flask import Flask, Blueprint, request, jsonify, g
+import requests
+import argparse
+import os
+import socket
+import ssl
+import pytz
+import json
+import sqlite3  # added for SQLite support
+
+#------------------
+# Argument parsing
+#------------------
+
+is_gunicorn = "gunicorn" in os.environ.get("SERVER_SOFTWARE", "")
+
+if not is_gunicorn:
+    parser = argparse.ArgumentParser()
+    
+    parser.add_argument('-v','--verbose',action='store_true',help='Enable verbose mode')
+    
+    args = parser.parse_args()
+
+    
+    if args.verbose:
+        print('***********************')
+        print('Verbose mode is enabled')
+        print('***********************')
+        print()
+else:
+    class args:
+        def __init__(self):
+            self.verbose=True
+            self.env="prod"
+    args = args()
+
+#------------------
+# SQLite DB initialization
+#------------------
+
+DB_FILE = "carpool.db"
+
+def init_db():
+    # Remove existing DB if exists
+    if os.path.exists(DB_FILE):
+        if args.verbose:
+            print(f"Removing existing database {DB_FILE}")
+        os.remove(DB_FILE)
+    
+    # Create a new database
+    if args.verbose:
+        print(f"Creating new database {DB_FILE}")
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    
+    # Example table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS rides (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            driver_name TEXT NOT NULL,
+            start_location TEXT NOT NULL,
+            end_location TEXT NOT NULL,
+            seats_available INTEGER NOT NULL,
+            departure_time TEXT NOT NULL
+        )
+    ''')
+    
+    conn.commit()
+    conn.close()
+    if args.verbose:
+        print("Database initialized successfully.")
+
+#------------------
+# Flask API part
+#------------------
+
+app = Flask(__name__)
+
+public_bp = Blueprint("public",__name__)
+
+@public_bp.route("/isalive",methods=["GET"])
+def is_alive():
+    return "OK",200
+
+app.register_blueprint(public_bp)
+
+private_bp = Blueprint("private", __name__)
+
+#@private_bp.route('/api/root/<userID>', methods=['GET'])
+@private_bp.route('/api', methods=['GET'])
+def get_root():
+    return jsonify({
+        "return_code": "OK",
+        "response": "setHomeThumbnail",
+        "data": {"houseID": "Toto"}
+    }), 200    
+
+app.register_blueprint(private_bp)
+
+#------------------
+# Main
+#------------------
+
+if __name__ == '__main__':
+    # Initialize database before starting Flask
+    init_db()
+
+    # host="0.0.0.0" > allow to listen requests from any client
+    # do not use in production
+    if not is_gunicorn:
+        app.run(debug=True, port=12345, host="0.0.0.0")
