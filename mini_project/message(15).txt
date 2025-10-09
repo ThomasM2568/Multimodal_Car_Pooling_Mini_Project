@@ -1,0 +1,142 @@
+# -*- coding: utf-8 -*-
+import folium
+from math import radians, sin, cos, sqrt, atan2
+from itertools import permutations
+
+def haversine(coord1, coord2):
+    R = 6371.0
+    lat1, lon1 = radians(coord1[0]), radians(coord1[1])
+    lat2, lon2 = radians(coord2[0]), radians(coord2[1])
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    a = sin(dlat/2)**2 + cos(lat1)*cos(lat2)*sin(dlon/2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    return R * c
+
+start_points_coords = [
+    (47.639674, 6.863844),
+    (47.678125, 6.848332),
+    (47.510266, 7.001676),
+    (47.512000, 7.002500),
+    (47.583328, 6.75),
+    (47.633331, 6.16667),
+    (47.683331, 6.5),
+    (47.51667, 6.8),
+    (47.48333, 6.73333),
+    (47.466671, 6.76667),
+]
+
+central_end_point = (47.511364, 6.804863)
+
+intermediate_points_coords = [
+    # Original 5 Points
+    (47.60521, 6.18757),
+    (47.70, 6.2),  # Custom I2
+    (47.62623, 6.73228),
+    (47.52295, 6.76158),
+    (47.62433, 6.84157),
+    
+    # 5 Points Added Previously
+    (47.4946506, 6.7231992),
+    (47.4603080, 6.7108396),
+    (47.5298981, 6.8921140),
+    (47.5303617, 6.8234494),
+    (47.5136686, 6.7712644),
+    
+    # 6 Newly Added Points
+    (47.4974994, 6.7952111),
+    (47.5139295, 6.8080829),
+    (47.5085669, 6.8028043),
+    (47.5035952, 6.8120096),
+    (47.5157829, 6.8158720),
+    (47.5125655, 6.8359993)
+]
+
+# Define 10 distinct colors for the 10 start points
+# Using folium's built-in colors (red, blue, green, purple, darkred, 
+# lightred, orange, darkblue, white, black)
+START_COLORS = [
+    'red', 'blue', 'green', 'purple', 'darkred', 
+    'lightred', 'orange', 'darkblue', 'gray', 'black'
+]
+
+
+# ------------------ Start ? Intermediary Table ------------------
+print("Distance Table: Start ? Intermediary (km)")
+header = ["Start\Inter"] + [f"I{i+1}" for i in range(len(intermediate_points_coords))]
+print("{:<10}".format(header[0]), end="")
+for h in header[1:]:
+    print("{:>10}".format(h), end="")
+print()
+
+for i, start in enumerate(start_points_coords, start=1):
+    print("{:<10}".format(f"S{i}"), end="")
+    for inter in intermediate_points_coords:
+        print("{:>10}".format(round(haversine(start, inter), 2)), end="")
+    print()
+
+# ------------------ Intermediary ? End Table ------------------
+print("\nDistance Table: Intermediary ? End (km)")
+print("{:<10} {:>10}".format("Inter", "Dist_to_End"))
+for j, inter in enumerate(intermediate_points_coords, start=1):
+    print("{:<10} {:>10}".format(f"I{j}", round(haversine(inter, central_end_point), 2)))
+
+# ------------------ Compute best paths ------------------
+results = []
+
+for start in start_points_coords:
+    best_distance = float("inf")
+    best_path = None
+
+    # Single intermediate
+    for inter in intermediate_points_coords:
+        total_dist = haversine(start, inter) + haversine(inter, central_end_point)
+        if total_dist < best_distance:
+            best_distance = total_dist
+            best_path = [start, inter, central_end_point]
+
+    # Two intermediates
+    for inter1, inter2 in permutations(intermediate_points_coords, 2):
+        total_dist = (
+            haversine(start, inter1)
+            + haversine(inter1, inter2)
+            + haversine(inter2, central_end_point)
+        )
+        if total_dist < best_distance:
+            best_distance = total_dist
+            best_path = [start, inter1, inter2, central_end_point]
+
+    results.append({
+        'Start': start,
+        'Path': best_path,
+        'Distance_km': round(best_distance, 2)
+    })
+
+# ------------------ Plotting ------------------
+m = folium.Map(location=central_end_point, zoom_start=10)
+
+# Plot Start Points with unique colors
+for i, coord in enumerate(start_points_coords):
+    color = START_COLORS[i % len(START_COLORS)] # Get the color
+    folium.Marker(coord, popup=f"Start S{i+1}", icon=folium.Icon(color=color)).add_to(m)
+
+# Plot Intermediate Points (color remains orange)
+for j, coord in enumerate(intermediate_points_coords):
+    folium.Marker(coord, popup=f"I{j+1}", icon=folium.Icon(color='orange', icon='star')).add_to(m)
+
+# Plot Central End Point (color remains green)
+folium.Marker(central_end_point, popup="Central End", icon=folium.Icon(color='green', icon='flag')).add_to(m)
+
+# Plot Paths with the corresponding start point color
+for i, d in enumerate(results):
+    color = START_COLORS[i % len(START_COLORS)] # Get the corresponding color
+    folium.PolyLine(d['Path'], color=color, weight=3, opacity=0.7,
+                    tooltip=f"S{i+1}: {d['Distance_km']} km").add_to(m)
+
+m.save("shortest_routes_map.html")
+
+print("\nBest paths:")
+for i, d in enumerate(results, start=1):
+    print(f"S{i}: {d['Path']} -> {d['Distance_km']} km")
+
+print("? Map saved as shortest_routes_map.html with color-coded start points and paths.")

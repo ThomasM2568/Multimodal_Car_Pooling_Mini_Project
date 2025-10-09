@@ -1,0 +1,150 @@
+# -*- coding: utf-8 -*-
+import folium
+import json
+from math import radians, sin, cos, sqrt, atan2
+from itertools import permutations
+import sys
+
+# ------------------ Haversine formula ------------------
+def haversine(coord1, coord2):
+    R = 6371.0
+    lat1, lon1 = radians(coord1[0]), radians(coord1[1])
+    lat2, lon2 = radians(coord2[0]), radians(coord2[1])
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    a = sin(dlat/2)**2 + cos(lat1)*cos(lat2)*sin(dlon/2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    return R * c
+
+# ------------------ Load JSON ------------------
+def load_json(json_path="data.json"):
+    try:
+        with open(json_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"? Error loading JSON: {e}")
+        sys.exit(1)
+
+# ------------------ Find most central point ------------------
+def find_most_central_point(points):
+    if not points:
+        raise ValueError("Empty list of points.")
+    min_sum_dist = float("inf")
+    central_point = points[0]
+    for p1 in points:
+        total_dist = sum(haversine(p1, p2) for p2 in points if p2 != p1)
+        if total_dist < min_sum_dist:
+            min_sum_dist = total_dist
+            central_point = p1
+    return central_point
+
+# ------------------ Prepare coordinates from JSON ------------------
+def build_coordinates_from_json(json_path="data.json"):
+    data = load_json(json_path)
+
+    start_points = []  # [{"name": ..., "coords": {"lat": ..., "lon": ...}}]
+    intermediate_points = []
+    central_end_points = []
+
+    # START (people)
+    for person in data.get("people", []):
+        coords = person.get("address")
+        if coords and "lat" in coords and "lon" in coords:
+            start_points.append({"name": person["name"], "coords": coords})
+
+    # INTERMEDIARY (dict)
+    for name, coords in data.get("intermediary", {}).items():
+        if coords and "lat" in coords and "lon" in coords:
+            intermediate_points.append({"name": name, "coords": coords})
+
+    # CENTRAL END POINTS (dict)
+    for name, coords in data.get("places", {}).items():
+        if coords and "lat" in coords and "lon" in coords:
+            central_end_points.append({"name": name, "coords": coords})
+
+    if not central_end_points:
+        print("? No central end point found. Exiting.")
+        sys.exit(1)
+
+    # Compute the most central end point
+    central_end_point = find_most_central_point([list(p["coords"].values()) for p in central_end_points])
+
+    return start_points, intermediate_points, central_end_point
+
+# ------------------ Main computation & plotting ------------------
+def main():
+    start_points, intermediate_points, central_end_point = build_coordinates_from_json()
+
+    START_COLORS = ['red', 'blue', 'green', 'purple', 'darkred', 'lightred', 'orange', 'darkblue', 'gray', 'black']
+
+    # ------------------ Compute distances and best paths ------------------
+    results = []
+
+    for start in start_points:
+        start_coords = list(start["coords"].values())
+        best_distance = float("inf")
+        best_path = None
+
+        # Single intermediate
+        for inter in intermediate_points:
+            inter_coords = list(inter["coords"].values())
+            total_dist = haversine(start_coords, inter_coords) + haversine(inter_coords, central_end_point)
+            if total_dist < best_distance:
+                best_distance = total_dist
+                best_path = [start_coords, inter_coords, central_end_point]
+
+        # Two intermediates
+        for inter1, inter2 in permutations(intermediate_points, 2):
+            inter1_coords = list(inter1["coords"].values())
+            inter2_coords = list(inter2["coords"].values())
+            total_dist = (
+                haversine(start_coords, inter1_coords)
+                + haversine(inter1_coords, inter2_coords)
+                + haversine(inter2_coords, central_end_point)
+            )
+            if total_dist < best_distance:
+                best_distance = total_dist
+                best_path = [start_coords, inter1_coords, inter2_coords, central_end_point]
+
+        results.append({
+            "Start": start_coords,
+            "Path": best_path,
+            "Distance_km": round(best_distance, 2)
+        })
+
+    # ------------------ Plotting ------------------
+    m = folium.Map(location=central_end_point, zoom_start=11)
+
+    # Start Points
+    for i, start in enumerate(start_points):
+        coords = list(start["coords"].values())
+        folium.Marker(coords, popup=start["name"],
+                      icon=folium.Icon(color=START_COLORS[i % len(START_COLORS)])).add_to(m)
+
+    # Intermediate Points
+    for j, inter in enumerate(intermediate_points):
+        coords = list(inter["coords"].values())
+        folium.Marker(coords, popup=inter["name"],
+                      icon=folium.Icon(color="orange", icon="star")).add_to(m)
+
+    # Central End Point
+    folium.Marker(central_end_point, popup="Central End",
+                  icon=folium.Icon(color="green", icon="flag")).add_to(m)
+
+    # Draw paths
+    for i, d in enumerate(results):
+        color = START_COLORS[i % len(START_COLORS)]
+        folium.PolyLine(d["Path"], color=color, weight=3, opacity=0.7,
+                        tooltip=f"{start_points[i]['name']}: {d['Distance_km']} km").add_to(m)
+
+    m.save("shortest_routes_map.html")
+
+    # ------------------ Print paths ------------------
+    print("\nBest paths:")
+    for i, d in enumerate(results, start=1):
+        print(f"{start_points[i-1]['name']}: {d['Path']} -> {d['Distance_km']} km")
+
+    print("? Map saved as shortest_routes_map.html with markers and paths.")
+
+if __name__ == "__main__":
+    main()

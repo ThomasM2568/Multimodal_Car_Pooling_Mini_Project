@@ -1,0 +1,25 @@
+{
+  "places": {
+    "UFR STGI": {"lat": 47.4948592, "lon": 6.8029511},
+    "Université de Belfort Louis NEEL": {"lat": 47.641068, "lon": 6.8637304},
+    "Pub O'Brian": {"lat": 47.5101649, "lon": 6.8011172},
+    "Le Moulin Rouge": {"lat": 47.492704, "lon": 6.8405738},
+    "Le Cario Club": {"lat":  47.450001, "lon": 6.8 },
+    "Grand Besançon Métropole": {"lat":  47.25, "lon":  6.03333 }
+  },
+  "intermediary": {
+    "Grand Frais": {"lat": 47.482063, "lon": 6.7807172},
+    "Musée de L'Aventure Peugeot": {"lat":  47.51667, "lon": 6.83333 },
+    "Stade Auguste-Bonal": {"lat": 47.5142488, "lon": 6.8114556},
+    "au konbini": {"lat": 47.650002, "lon": 6.93333 }
+  },
+  "people": [
+    {"name": "Kyllian Cuevas", "address": {"lat": 47.75, "lon": 7.33333}},
+     {"name": "Cuevas Kyllian", "address": {"lat": 47.508095, "lon": 6.8025206}},
+    {"name": "Pierre Meyer", "address": {"lat": 47.666816, "lon": 6.8946921}},
+    {"name": "Thomas Mirbey", "address": {"lat": 47.469884, "lon": 6.767292}},
+    {"name": "Yohann Mitel", "address": {"lat": 47.5329056, "lon": 6.7970168}},
+    {"name": "Titouan Magnin", "address": {"lat": 47.4066247, "lon": 6.8153961}},
+    {"name": "Baptiste Laval", "address": {"lat": 47.51667, "lon":  6.8 }} 
+  ]
+}

@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_94fe83f05268aa66ac31d87e16485b48 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_94fe83f05268aa66ac31d87e16485b48" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_94fe83f05268aa66ac31d87e16485b48 = L.map(
+                "map_94fe83f05268aa66ac31d87e16485b48",
+                {
+                    center: [47.5101649, 6.8011172],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a987d236a3d680616bfe2bc0c0d714cc = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a987d236a3d680616bfe2bc0c0d714cc.addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var marker_8d168245dab1a62ec200399fb6aa4d27 = L.marker(
+                [47.75, 7.33333],
+                {
+}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var icon_8f1c5b1af4335ec190bf30ee18a03de6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f596926a1bdb68fb25ec5205cdeb7842 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0a2fb936365b8da281f28dffd6e4e9ae = $(`<div id="html_0a2fb936365b8da281f28dffd6e4e9ae" style="width: 100.0%; height: 100.0%;">Kyllian Cuevas</div>`)[0];
+                popup_f596926a1bdb68fb25ec5205cdeb7842.setContent(html_0a2fb936365b8da281f28dffd6e4e9ae);
+            
+        
+
+        marker_8d168245dab1a62ec200399fb6aa4d27.bindPopup(popup_f596926a1bdb68fb25ec5205cdeb7842)
+        ;
+
+        
+    
+    
+                marker_8d168245dab1a62ec200399fb6aa4d27.setIcon(icon_8f1c5b1af4335ec190bf30ee18a03de6);
+            
+    
+            var marker_5e051b54232df17c259bdfc494f2fcaa = L.marker(
+                [47.508095, 6.8025206],
+                {
+}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var icon_f742defdd6bbf866853f8a1075fbf40a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_361f60fda2a34ecb5c4cbb100e23b3f7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_85df2e49d883537fd7054c4b0201a104 = $(`<div id="html_85df2e49d883537fd7054c4b0201a104" style="width: 100.0%; height: 100.0%;">Cuevas Kyllian</div>`)[0];
+                popup_361f60fda2a34ecb5c4cbb100e23b3f7.setContent(html_85df2e49d883537fd7054c4b0201a104);
+            
+        
+
+        marker_5e051b54232df17c259bdfc494f2fcaa.bindPopup(popup_361f60fda2a34ecb5c4cbb100e23b3f7)
+        ;
+
+        
+    
+    
+                marker_5e051b54232df17c259bdfc494f2fcaa.setIcon(icon_f742defdd6bbf866853f8a1075fbf40a);
+            
+    
+            var marker_594c67a8d743d4de0a9ccab879418053 = L.marker(
+                [47.666816, 6.8946921],
+                {
+}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var icon_cbfc991723ec5db63cda6c2ffa47a555 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_940efcec5f14ff443034c5ce5cd03616 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2bbb40857aef88217fbc3da441dc0deb = $(`<div id="html_2bbb40857aef88217fbc3da441dc0deb" style="width: 100.0%; height: 100.0%;">Pierre Meyer</div>`)[0];
+                popup_940efcec5f14ff443034c5ce5cd03616.setContent(html_2bbb40857aef88217fbc3da441dc0deb);
+            
+        
+
+        marker_594c67a8d743d4de0a9ccab879418053.bindPopup(popup_940efcec5f14ff443034c5ce5cd03616)
+        ;
+
+        
+    
+    
+                marker_594c67a8d743d4de0a9ccab879418053.setIcon(icon_cbfc991723ec5db63cda6c2ffa47a555);
+            
+    
+            var marker_5dfa963dcd674a74b5f50e70a972c851 = L.marker(
+                [47.469884, 6.767292],
+                {
+}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var icon_f7f2a323679e6ee57a89d00128f2a336 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6dbb3c52f32b6b6a4fc157743858a6ba = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2faab8756736cfbc543e416769434a25 = $(`<div id="html_2faab8756736cfbc543e416769434a25" style="width: 100.0%; height: 100.0%;">Thomas Mirbey</div>`)[0];
+                popup_6dbb3c52f32b6b6a4fc157743858a6ba.setContent(html_2faab8756736cfbc543e416769434a25);
+            
+        
+
+        marker_5dfa963dcd674a74b5f50e70a972c851.bindPopup(popup_6dbb3c52f32b6b6a4fc157743858a6ba)
+        ;
+
+        
+    
+    
+                marker_5dfa963dcd674a74b5f50e70a972c851.setIcon(icon_f7f2a323679e6ee57a89d00128f2a336);
+            
+    
+            var marker_8b6f2442690e36c6d9efbe0cbc1c770b = L.marker(
+                [47.5329056, 6.7970168],
+                {
+}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var icon_03429237f22111259a93488c1d193b2b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkred",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_defedf6aceab3602540f487717937aee = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ee8e60bc8ba2917da8d7096d05e4e4af = $(`<div id="html_ee8e60bc8ba2917da8d7096d05e4e4af" style="width: 100.0%; height: 100.0%;">Yohann Mitel</div>`)[0];
+                popup_defedf6aceab3602540f487717937aee.setContent(html_ee8e60bc8ba2917da8d7096d05e4e4af);
+            
+        
+
+        marker_8b6f2442690e36c6d9efbe0cbc1c770b.bindPopup(popup_defedf6aceab3602540f487717937aee)
+        ;
+
+        
+    
+    
+                marker_8b6f2442690e36c6d9efbe0cbc1c770b.setIcon(icon_03429237f22111259a93488c1d193b2b);
+            
+    
+            var marker_5681c3e189446159be11d3fc93e2f6fc = L.marker(
+                [47.4066247, 6.8153961],
+                {
+}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var icon_76cdf6bff2bb6c799094e870de718ce6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ea9055fcb5d8f8e7a9756627d3b8ff58 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e7ce89215efddb74740f6f47b72b51a9 = $(`<div id="html_e7ce89215efddb74740f6f47b72b51a9" style="width: 100.0%; height: 100.0%;">Titouan Magnin</div>`)[0];
+                popup_ea9055fcb5d8f8e7a9756627d3b8ff58.setContent(html_e7ce89215efddb74740f6f47b72b51a9);
+            
+        
+
+        marker_5681c3e189446159be11d3fc93e2f6fc.bindPopup(popup_ea9055fcb5d8f8e7a9756627d3b8ff58)
+        ;
+
+        
+    
+    
+                marker_5681c3e189446159be11d3fc93e2f6fc.setIcon(icon_76cdf6bff2bb6c799094e870de718ce6);
+            
+    
+            var marker_d669e2a4993cfc717931cb5e4fde6d8a = L.marker(
+                [47.51667, 6.8],
+                {
+}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var icon_63d6481c6bf84e20362089461cc98b29 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2bb7c9fa70117e9d05aa9dfb267b4421 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e3a8fa0184724516e2dbf87f6650acdd = $(`<div id="html_e3a8fa0184724516e2dbf87f6650acdd" style="width: 100.0%; height: 100.0%;">Baptiste Laval</div>`)[0];
+                popup_2bb7c9fa70117e9d05aa9dfb267b4421.setContent(html_e3a8fa0184724516e2dbf87f6650acdd);
+            
+        
+
+        marker_d669e2a4993cfc717931cb5e4fde6d8a.bindPopup(popup_2bb7c9fa70117e9d05aa9dfb267b4421)
+        ;
+
+        
+    
+    
+                marker_d669e2a4993cfc717931cb5e4fde6d8a.setIcon(icon_63d6481c6bf84e20362089461cc98b29);
+            
+    
+            var marker_5d911dfa9a4a7f77d99cd64efdd319be = L.marker(
+                [47.482063, 6.7807172],
+                {
+}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var icon_fc04e50e920bcd3d0bf45fe84f86a7ec = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f1b8d4d9255aad47c1a40dc145f35921 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ed9063aed0d57a3c50c5cdbff6b119f6 = $(`<div id="html_ed9063aed0d57a3c50c5cdbff6b119f6" style="width: 100.0%; height: 100.0%;">Grand Frais</div>`)[0];
+                popup_f1b8d4d9255aad47c1a40dc145f35921.setContent(html_ed9063aed0d57a3c50c5cdbff6b119f6);
+            
+        
+
+        marker_5d911dfa9a4a7f77d99cd64efdd319be.bindPopup(popup_f1b8d4d9255aad47c1a40dc145f35921)
+        ;
+
+        
+    
+    
+                marker_5d911dfa9a4a7f77d99cd64efdd319be.setIcon(icon_fc04e50e920bcd3d0bf45fe84f86a7ec);
+            
+    
+            var marker_0757afce6600cb7e6caab279857c9917 = L.marker(
+                [47.51667, 6.83333],
+                {
+}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var icon_8353d04dce0a229ea9c49a577c4cfbbd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ff74e9f297ebb6c0d55e56a410efabcf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c00231d2ae72ddd2d3a8f820eb795852 = $(`<div id="html_c00231d2ae72ddd2d3a8f820eb795852" style="width: 100.0%; height: 100.0%;">Musée de L'Aventure Peugeot</div>`)[0];
+                popup_ff74e9f297ebb6c0d55e56a410efabcf.setContent(html_c00231d2ae72ddd2d3a8f820eb795852);
+            
+        
+
+        marker_0757afce6600cb7e6caab279857c9917.bindPopup(popup_ff74e9f297ebb6c0d55e56a410efabcf)
+        ;
+
+        
+    
+    
+                marker_0757afce6600cb7e6caab279857c9917.setIcon(icon_8353d04dce0a229ea9c49a577c4cfbbd);
+            
+    
+            var marker_cc5b6df0f7b5e1343a04dd6d52b15ef9 = L.marker(
+                [47.5142488, 6.8114556],
+                {
+}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var icon_2eff0ceae03207a00f32a72b52034d42 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1dd8e777123d8c2cfd45edecf789ea85 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a218671b44bc5fb2e0b540c6ab828a40 = $(`<div id="html_a218671b44bc5fb2e0b540c6ab828a40" style="width: 100.0%; height: 100.0%;">Stade Auguste-Bonal</div>`)[0];
+                popup_1dd8e777123d8c2cfd45edecf789ea85.setContent(html_a218671b44bc5fb2e0b540c6ab828a40);
+            
+        
+
+        marker_cc5b6df0f7b5e1343a04dd6d52b15ef9.bindPopup(popup_1dd8e777123d8c2cfd45edecf789ea85)
+        ;
+
+        
+    
+    
+                marker_cc5b6df0f7b5e1343a04dd6d52b15ef9.setIcon(icon_2eff0ceae03207a00f32a72b52034d42);
+            
+    
+            var marker_bacbf15b701e95046abc75c72ef59dfe = L.marker(
+                [47.650002, 6.93333],
+                {
+}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var icon_ca737a988a4632036f61bc09043afcaa = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bad2cd0a077c84991793a3941a0a4e49 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9eef4769487f4af8de725b1d0b90b044 = $(`<div id="html_9eef4769487f4af8de725b1d0b90b044" style="width: 100.0%; height: 100.0%;">au konbini</div>`)[0];
+                popup_bad2cd0a077c84991793a3941a0a4e49.setContent(html_9eef4769487f4af8de725b1d0b90b044);
+            
+        
+
+        marker_bacbf15b701e95046abc75c72ef59dfe.bindPopup(popup_bad2cd0a077c84991793a3941a0a4e49)
+        ;
+
+        
+    
+    
+                marker_bacbf15b701e95046abc75c72ef59dfe.setIcon(icon_ca737a988a4632036f61bc09043afcaa);
+            
+    
+            var marker_6fa5d5449f656e6ad43884ab267dcfed = L.marker(
+                [47.4948592, 6.8029511],
+                {
+}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var icon_4e512d557dd09e0c3a9323158465c469 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8f9e27c0936847d03574645947cff0ae = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_466a94c79a8238f307874ab2eb6aa3f0 = $(`<div id="html_466a94c79a8238f307874ab2eb6aa3f0" style="width: 100.0%; height: 100.0%;">Alternative End: UFR STGI</div>`)[0];
+                popup_8f9e27c0936847d03574645947cff0ae.setContent(html_466a94c79a8238f307874ab2eb6aa3f0);
+            
+        
+
+        marker_6fa5d5449f656e6ad43884ab267dcfed.bindPopup(popup_8f9e27c0936847d03574645947cff0ae)
+        ;
+
+        
+    
+    
+                marker_6fa5d5449f656e6ad43884ab267dcfed.setIcon(icon_4e512d557dd09e0c3a9323158465c469);
+            
+    
+            var marker_b531d97da3a46326920fd816dc6d2296 = L.marker(
+                [47.641068, 6.8637304],
+                {
+}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var icon_1e5fb18b85a6324b7534e85c53b47f9f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_767f66eacc8e64d3d3d803d76c110fda = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bcd2d4c385e141b42ab67bf29e7b4ece = $(`<div id="html_bcd2d4c385e141b42ab67bf29e7b4ece" style="width: 100.0%; height: 100.0%;">Alternative End: Université de Belfort Louis NEEL</div>`)[0];
+                popup_767f66eacc8e64d3d3d803d76c110fda.setContent(html_bcd2d4c385e141b42ab67bf29e7b4ece);
+            
+        
+
+        marker_b531d97da3a46326920fd816dc6d2296.bindPopup(popup_767f66eacc8e64d3d3d803d76c110fda)
+        ;
+
+        
+    
+    
+                marker_b531d97da3a46326920fd816dc6d2296.setIcon(icon_1e5fb18b85a6324b7534e85c53b47f9f);
+            
+    
+            var marker_08a6ad6caabd9dc6a7271ec588dc2e01 = L.marker(
+                [47.5101649, 6.8011172],
+                {
+}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var icon_2ea5f61282713f011f116fbdae0146fb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4ae984da83f073fcefb5571894c02a78 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_76164627fa78cfd610668d30e58e96ef = $(`<div id="html_76164627fa78cfd610668d30e58e96ef" style="width: 100.0%; height: 100.0%;">Chosen End: Pub O'Brian</div>`)[0];
+                popup_4ae984da83f073fcefb5571894c02a78.setContent(html_76164627fa78cfd610668d30e58e96ef);
+            
+        
+
+        marker_08a6ad6caabd9dc6a7271ec588dc2e01.bindPopup(popup_4ae984da83f073fcefb5571894c02a78)
+        ;
+
+        
+    
+    
+                marker_08a6ad6caabd9dc6a7271ec588dc2e01.setIcon(icon_2ea5f61282713f011f116fbdae0146fb);
+            
+    
+            var marker_989b23fa0c864875e2ce815f3f0941a7 = L.marker(
+                [47.492704, 6.8405738],
+                {
+}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var icon_8674d311db4ae48d961d4f7f242dbf9a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_681f0b794bd97f60d5482e294838d205 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_01f533db9c9e0629522047e98b6a8751 = $(`<div id="html_01f533db9c9e0629522047e98b6a8751" style="width: 100.0%; height: 100.0%;">Alternative End: Le Moulin Rouge</div>`)[0];
+                popup_681f0b794bd97f60d5482e294838d205.setContent(html_01f533db9c9e0629522047e98b6a8751);
+            
+        
+
+        marker_989b23fa0c864875e2ce815f3f0941a7.bindPopup(popup_681f0b794bd97f60d5482e294838d205)
+        ;
+
+        
+    
+    
+                marker_989b23fa0c864875e2ce815f3f0941a7.setIcon(icon_8674d311db4ae48d961d4f7f242dbf9a);
+            
+    
+            var marker_4b2f48f707862a1c39cf311cb20d9bde = L.marker(
+                [47.450001, 6.8],
+                {
+}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var icon_5c06047b0ce17b42a1144ccda27354f3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1ab387b399836b02dae1201997776927 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c8b4de9b62b166133f06cc7788cc6388 = $(`<div id="html_c8b4de9b62b166133f06cc7788cc6388" style="width: 100.0%; height: 100.0%;">Alternative End: Le Cario Club</div>`)[0];
+                popup_1ab387b399836b02dae1201997776927.setContent(html_c8b4de9b62b166133f06cc7788cc6388);
+            
+        
+
+        marker_4b2f48f707862a1c39cf311cb20d9bde.bindPopup(popup_1ab387b399836b02dae1201997776927)
+        ;
+
+        
+    
+    
+                marker_4b2f48f707862a1c39cf311cb20d9bde.setIcon(icon_5c06047b0ce17b42a1144ccda27354f3);
+            
+    
+            var marker_047d82dd57f8c78d15fc356e39702878 = L.marker(
+                [47.25, 6.03333],
+                {
+}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            var icon_4a4ceee0cf21fc4e1b5f36ca39554fd0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bf40aaba9a815f4cab667dd0120da9c8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0f0b6277a4337e38149fccef52b003b1 = $(`<div id="html_0f0b6277a4337e38149fccef52b003b1" style="width: 100.0%; height: 100.0%;">Alternative End: Grand Besançon Métropole</div>`)[0];
+                popup_bf40aaba9a815f4cab667dd0120da9c8.setContent(html_0f0b6277a4337e38149fccef52b003b1);
+            
+        
+
+        marker_047d82dd57f8c78d15fc356e39702878.bindPopup(popup_bf40aaba9a815f4cab667dd0120da9c8)
+        ;
+
+        
+    
+    
+                marker_047d82dd57f8c78d15fc356e39702878.setIcon(icon_4a4ceee0cf21fc4e1b5f36ca39554fd0);
+            
+    
+            var poly_line_5cf886f1759bfc8a2bb7eadbd393944a = L.polyline(
+                [[47.75, 7.33333], [47.5142488, 6.8114556], [47.5101649, 6.8011172]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            poly_line_5cf886f1759bfc8a2bb7eadbd393944a.bindTooltip(
+                `<div>
+                     Kyllian Cuevas: 47.98 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_1ab319d556ad164e1990105da83ce778 = L.polyline(
+                [[47.508095, 6.8025206], [47.5142488, 6.8114556], [47.5101649, 6.8011172]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            poly_line_1ab319d556ad164e1990105da83ce778.bindTooltip(
+                `<div>
+                     Cuevas Kyllian: 1.86 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_5662539c3714d70d478854b777f68967 = L.polyline(
+                [[47.666816, 6.8946921], [47.5142488, 6.8114556], [47.5101649, 6.8011172]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            poly_line_5662539c3714d70d478854b777f68967.bindTooltip(
+                `<div>
+                     Pierre Meyer: 18.98 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_09c8ba9a99f1b7a68c17564517fb43d8 = L.polyline(
+                [[47.469884, 6.767292], [47.482063, 6.7807172], [47.5101649, 6.8011172]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            poly_line_09c8ba9a99f1b7a68c17564517fb43d8.bindTooltip(
+                `<div>
+                     Thomas Mirbey: 5.17 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_539e0b66e4b1396f1e686474a935a50f = L.polyline(
+                [[47.5329056, 6.7970168], [47.5142488, 6.8114556], [47.5101649, 6.8011172]],
+                {"bubblingMouseEvents": true, "color": "darkred", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "darkred", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            poly_line_539e0b66e4b1396f1e686474a935a50f.bindTooltip(
+                `<div>
+                     Yohann Mitel: 3.24 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_d4351a29bb9f2122d986fc56f797c848 = L.polyline(
+                [[47.4066247, 6.8153961], [47.482063, 6.7807172], [47.5101649, 6.8011172]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            poly_line_d4351a29bb9f2122d986fc56f797c848.bindTooltip(
+                `<div>
+                     Titouan Magnin: 12.26 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_e06bd698758e060fd37e09cc8b73fddb = L.polyline(
+                [[47.51667, 6.8], [47.5142488, 6.8114556], [47.5101649, 6.8011172]],
+                {"bubblingMouseEvents": true, "color": "darkblue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "darkblue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_94fe83f05268aa66ac31d87e16485b48);
+        
+    
+            poly_line_e06bd698758e060fd37e09cc8b73fddb.bindTooltip(
+                `<div>
+                     Baptiste Laval: 1.8 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
