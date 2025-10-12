@@ -1,25 +1,114 @@
 {
   "places": {
-    "UFR STGI": {"lat": 47.4948592, "lon": 6.8029511},
-    "Université de Belfort Louis NEEL": {"lat": 47.641068, "lon": 6.8637304},
-    "Pub O'Brian": {"lat": 47.5101649, "lon": 6.8011172},
-    "Le Moulin Rouge": {"lat": 47.492704, "lon": 6.8405738},
-    "Le Cario Club": {"lat":  47.450001, "lon": 6.8 },
-    "Grand Besançon Métropole": {"lat":  47.25, "lon":  6.03333 }
+    "UFR STGI": {
+      "name": "UFR STGI",
+      "lat": 47.4948592,
+      "lon": 6.8029511,
+      "img_path": "UFR_STGI.png",
+      "instruction": "Main building of UFR STGI, enter from the north gate."
+    },
+    "Université de Belfort Louis NEEL": {
+      "name": "Université de Belfort Louis NEEL",
+      "lat": 47.641068,
+      "lon": 6.8637304,
+      "img_path": "Université_de_Belfort_Louis_NEEL.png",
+      "instruction": "Check in at the reception desk upon arrival."
+    },
+    "Pub O'Brian": {
+      "name": "Pub O'Brian",
+      "lat": 47.5101649,
+      "lon": 6.8011172,
+      "img_path": "Pub_O_Brian.png",
+      "instruction": "Popular pub, meet here for social gathering."
+    },
+    "Le Moulin Rouge": {
+      "name": "Le Moulin Rouge",
+      "lat": 47.492704,
+      "lon": 6.8405738,
+      "img_path": "Le_Moulin_Rouge.png",
+      "instruction": "Classic nightlife spot, open after 8 PM."
+    },
+    "Le Cario Club": {
+      "name": "Le Cario Club",
+      "lat": 47.450001,
+      "lon": 6.8,
+      "img_path": "Le_Cario_Club.png",
+      "instruction": "Entrance at the rear parking lot."
+    },
+    "Grand Besançon Métropole": {
+      "name": "Grand Besançon Métropole",
+      "lat": 47.25,
+      "lon": 6.03333,
+      "img_path": "Grand_Besancon_Metropole.png",
+      "instruction": "City hall and administrative offices."
+    }
   },
   "intermediary": {
-    "Grand Frais": {"lat": 47.482063, "lon": 6.7807172},
-    "Musée de L'Aventure Peugeot": {"lat":  47.51667, "lon": 6.83333 },
-    "Stade Auguste-Bonal": {"lat": 47.5142488, "lon": 6.8114556},
-    "au konbini": {"lat": 47.650002, "lon": 6.93333 }
+    "Grand Frais": {
+      "name": "Grand Frais",
+      "lat": 47.482063,
+      "lon": 6.7807172,
+      "img_path": "Grand_Frais.png",
+      "instruction": "Fresh produce market, best for quick stops."
+    },
+    "Musée de L'Aventure Peugeot": {
+      "name": "Musée de L'Aventure Peugeot",
+      "lat": 47.51667,
+      "lon": 6.83333,
+      "img_path": "Musee_de_L_Aventure_Peugeot.png",
+      "instruction": "Car museum, allow 1–2 hours for visit."
+    },
+    "Stade Auguste-Bonal": {
+      "name": "Stade Auguste-Bonal",
+      "lat": 47.5142488,
+      "lon": 6.8114556,
+      "img_path": "Stade_Auguste_Bonal.png",
+      "instruction": "Football stadium, main entrance on south side."
+    },
+    "au konbini": {
+      "name": "au konbini",
+      "lat": 47.650002,
+      "lon": 6.93333,
+      "img_path": "au_konbini.png",
+      "instruction": "Convenience store, open 24/7."
+    }
   },
   "people": [
-    {"name": "Kyllian Cuevas", "address": {"lat": 47.75, "lon": 7.33333}},
-     {"name": "Cuevas Kyllian", "address": {"lat": 47.508095, "lon": 6.8025206}},
-    {"name": "Pierre Meyer", "address": {"lat": 47.666816, "lon": 6.8946921}},
-    {"name": "Thomas Mirbey", "address": {"lat": 47.469884, "lon": 6.767292}},
-    {"name": "Yohann Mitel", "address": {"lat": 47.5329056, "lon": 6.7970168}},
-    {"name": "Titouan Magnin", "address": {"lat": 47.4066247, "lon": 6.8153961}},
-    {"name": "Baptiste Laval", "address": {"lat": 47.51667, "lon":  6.8 }} 
+    {
+      "name": "Kyllian Cuevas",
+      "address": {"lat": 47.75, "lon": 7.33333},
+      "img_path": "Kyllian_Cuevas.png"
+    },
+    {
+      "name": "Cuevas Kyllian",
+      "address": {"lat": 47.508095, "lon": 6.8025206},
+      "img_path": "Cuevas_Kyllian.png"
+    },
+    {
+      "name": "Pierre Meyer",
+      "address": {"lat": 47.666816, "lon": 6.8946921},
+      "img_path": "Pierre_Meyer.png"
+    },
+    {
+      "name": "Thomas Mirbey",
+      "address": {"lat": 47.469884, "lon": 6.767292},
+      "img_path": "Thomas_Mirbey.png"
+    },
+    {
+      "name": "Yohann Mitel",
+      "address": {"lat": 47.5329056, "lon": 6.7970168},
+      "img_path": "Yohann_Mitel.png"
+    },
+    {
+      "name": "Titouan Magnin",
+      "address": {"lat": 47.4066247, "lon": 6.8153961},
+      "img_path": "Titouan_Magnin.png"
+    },
+    {
+      "name": "Baptiste Laval",
+      "address": {"lat": 47.51667, "lon": 6.8},
+      "img_path": "Baptiste_Laval.png"
+    }
   ]
 }
+
